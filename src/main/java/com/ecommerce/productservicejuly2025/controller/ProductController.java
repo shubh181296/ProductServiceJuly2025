@@ -3,6 +3,7 @@ package com.ecommerce.productservicejuly2025.controller;
 import com.ecommerce.productservicejuly2025.exception.ProductNotFoundException;
 import com.ecommerce.productservicejuly2025.models.Product;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class ProductController {
     private final HttpServletResponse httpServletResponse;
     ProductService productService;
 
-    public ProductController(ProductService productService, HttpServletResponse httpServletResponse) {
+    public ProductController(@Qualifier("dbProductService") ProductService productService, HttpServletResponse httpServletResponse) {
 
         this.productService = productService;
         this.httpServletResponse = httpServletResponse;
