@@ -22,6 +22,11 @@ public class FakeStoreProductService implements ProductService{
     }
 
     @Override
+    public Product createProduct(Product product) {
+        return null;
+    }
+
+    @Override
     public Product getSingleProduct(Long id) throws ProductNotFoundException {
         //throw new ArrayIndexOutOfBoundsException();
         FakeStoreProductDto fakeStoreProductDto =
@@ -60,6 +65,16 @@ public class FakeStoreProductService implements ProductService{
         }
         return products;
 
+    }
+
+    @Override
+    public void deleteSingleProduct(Long id) {
+
+    }
+
+    @Override
+    public Product updateProduct(Long id, Product product) {
+        return null;
     }
 
     @Override

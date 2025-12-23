@@ -55,22 +55,36 @@ public class ProductController {
 
     }
 
-    @GetMapping()
-    public List<Product> getAllProducts() {
+    @PostMapping()
+    public Product createProduct(@RequestBody Product product) {
+        return productService.createProduct(product);
+    }
 
-        return productService.getAllProducts();
+    @GetMapping()
+    public ResponseEntity<List<Product>> getAllProducts() {
+
+        ResponseEntity<List<Product>> response=new ResponseEntity<>(productService.getAllProducts(),
+                HttpStatus.OK);
+
+        return response;
+
     }
 
     //Partial update
-//    @PatchMapping("/{id}")
-//    public Product updateProduct(@PathVariable("id") Long id, @RequestBody Product product) {
-//        return null;
-//    }
-//
+    @PatchMapping("/{id}")
+    public Product updateProduct(@PathVariable("id") Long id, @RequestBody Product product) throws ProductNotFoundException {
+        return productService.updateProduct(id, product);
+    }
+
    @PutMapping("/{id}")
     public Product replaceProduct(@PathVariable("id") Long id, @RequestBody Product product) {
 
         return  productService.replaceProduct(id, product);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteSingleProduct(@PathVariable("id") Long id) throws ProductNotFoundException {
+        productService.deleteSingleProduct(id);
     }
     /*
     Create Product
